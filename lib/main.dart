@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location_getter/home.dart';
 
-Future<void> main() async {
-  // LocationPermission permission;
-  //  permission = await Geolocator.requestPermission();
-   
+Future<void> main() async {   
   runApp(MyApp());
 }
 
