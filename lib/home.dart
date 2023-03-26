@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -17,10 +19,12 @@ class _GeoHomePageState extends State<GeoHomePage> {
   }
 
   Position? _currentPosition;
-  var longitude, latitude, postalCode, city, country;
+  double? longitude, latitude;
+  String? postalCode, city, country;
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Geo Live Locator"),
@@ -81,11 +85,6 @@ class _GeoHomePageState extends State<GeoHomePage> {
         desiredAccuracy: LocationAccuracy.high);
 
     print('Position determined: $position');
-
-    // Geolocator.getCurrentPosition(
-    //         desiredAccuracy: LocationAccuracy.best,
-    //         forceAndroidLocationManager: true)
-    //     .then((Position position) async {
     _currentPosition = position;
     if (_currentPosition != null) {
       setState(() {
@@ -97,17 +96,14 @@ class _GeoHomePageState extends State<GeoHomePage> {
     } else {
       print("Error getting location");
     }
-    // }).catchError((e) {
-    //   print(e);
-    // });
   }
 
   _getAddressFromLatLng() async {
     try {
       print("Trying ---");
       List<Placemark> placemarks = await placemarkFromCoordinates(
-        latitude,
-        longitude,
+        latitude!,
+        longitude!,
       );
 
       Placemark place = placemarks[0];
