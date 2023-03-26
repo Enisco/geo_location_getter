@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -41,6 +39,7 @@ class _GeoHomePageState extends State<GeoHomePage> {
                   height: 220,
                   width: size.width * 0.8,
                   padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
                     borderRadius: const BorderRadius.all(
@@ -67,6 +66,9 @@ class _GeoHomePageState extends State<GeoHomePage> {
                   _currentPosition != null
                       ? "Refresh Location"
                       : "Get Location",
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
                 ),
               )
             ],
@@ -91,7 +93,6 @@ class _GeoHomePageState extends State<GeoHomePage> {
         longitude = _currentPosition!.longitude;
         latitude = _currentPosition!.latitude;
       });
-      print("Here >>>");
       await _getAddressFromLatLng();
     } else {
       print("Error getting location");
