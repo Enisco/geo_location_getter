@@ -58,8 +58,6 @@ class _GeoHomePageState extends State<GeoHomePage> {
                 ),
               TextButton(
                 onPressed: () async {
-                  print("Getting . . .");
-
                   await _getCurrentLocation();
                 },
                 child: Text(
@@ -101,7 +99,6 @@ class _GeoHomePageState extends State<GeoHomePage> {
 
   _getAddressFromLatLng() async {
     try {
-      print("Trying ---");
       List<Placemark> placemarks = await placemarkFromCoordinates(
         latitude!,
         longitude!,
